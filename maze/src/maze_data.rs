@@ -1,4 +1,5 @@
 use crate::direction::{Direction, NUM_OF_ACTION};
+use crate::State;
 
 pub const NUM_OF_STATE: usize = 18; // 16 position + goal: 17 + start: 0 = total: 18
 
@@ -30,7 +31,8 @@ impl Maze {
         Self(MAZE)
     }
 
-    pub fn next(&self, position: u32, action: &Direction) -> u32 {
-        return MAZE[position as usize][action.clone() as usize];
+    pub fn next(&self, position: State, action: &Direction) -> State {
+        let position: usize = position.into();
+        return MAZE[position][action.clone() as usize].into();
     }
 }

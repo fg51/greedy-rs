@@ -1,6 +1,6 @@
 pub const NUM_OF_ACTION: usize = 4; // 行動の種類(上・右・下・左の4種類)
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Direction {
     Up = 0,
     Right = 1,
@@ -34,6 +34,36 @@ impl std::fmt::Display for Direction {
         )
     }
 }
+
+impl std::convert::From<u32> for Direction {
+    fn from(from: u32) -> Self {
+        Direction::new(from)
+    }
+}
+
+impl std::convert::From<usize> for Direction {
+    fn from(from: usize) -> Self {
+        Direction::new(from as u32)
+    }
+}
+
+impl std::convert::From<Direction> for u32 {
+    fn from(from: Direction) -> Self {
+        from as u32
+    }
+}
+
+impl std::convert::From<Direction> for usize {
+    fn from(from: Direction) -> Self {
+        from as usize
+    }
+}
+
+//impl std::convert::From<Direction> for u32{
+//    fn from(from: Direction) -> Self {
+//        from
+//    }
+//}
 
 #[cfg(test)]
 mod tests {
